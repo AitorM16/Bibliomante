@@ -1,5 +1,7 @@
 package proyecto.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,4 +17,8 @@ public class UsuarioService {
 	public Usuario registrarUsuario(Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
+	
+	public List<Usuario> findAllUsuarios() {
+	    return usuarioRepository.findAll();
+	}
 }

@@ -1,7 +1,8 @@
 package proyecto.entity;
 
+import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.NotBlank;
-
+@MappedSuperclass
 public class Actor extends DomainEntity {
 	@NotBlank
 	private String nombre;
