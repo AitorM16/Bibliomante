@@ -3,6 +3,8 @@ package proyecto.entity;
 import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 
@@ -14,6 +16,7 @@ public class Prestamo extends DomainEntity{
 	private LocalDate fechaPrevistaDevolucion;
 
 	@NotNull
+	@Enumerated(EnumType.STRING)
 	private Estado estadoPrestamo;
 
 	@ManyToOne

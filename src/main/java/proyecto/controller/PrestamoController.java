@@ -81,7 +81,7 @@ public class PrestamoController {
     
     //4c
  // Historial de préstamos de un usuario
-    @GetMapping("/usuario/{usuarioId}")
+    @GetMapping("/usuario/{usuarioId}/prestamos")
     public ResponseEntity<List<Prestamo>> historialPorUsuario(
             @PathVariable int usuarioId) {
         List<Prestamo> historial = prestamoService.historialPorUsuario(usuarioId);

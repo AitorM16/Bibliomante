@@ -2,6 +2,7 @@ package proyecto.services;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,9 +17,6 @@ import proyecto.entity.Libro;
 import proyecto.entity.Prestamo;
 import proyecto.entity.Usuario;
 import proyecto.repository.LibroRepository;
-
-import proyecto.entity.Estado;
-import proyecto.entity.Prestamo;
 import proyecto.repository.PrestamoRepository;
 import proyecto.repository.UsuarioRepository;
 

@@ -27,6 +27,7 @@ public class Evento extends DomainEntity {
 	private Bibliotecario organizador;
 
 	@ManyToMany
+	@JoinTable(name = "evento_usuarios_inscritos", joinColumns = @JoinColumn(name = "evento_id"), inverseJoinColumns = @JoinColumn(name = "usuario_id"))
 	private List<Usuario> usuariosInscritos = new ArrayList<>();
 
 	public Evento() {

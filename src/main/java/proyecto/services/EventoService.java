@@ -92,7 +92,7 @@ public class EventoService {
     private boolean tieneAforo(Evento evento) {
         int numeroInscritos = evento.getUsuariosInscritos() == null ? 0 : evento.getUsuariosInscritos().size();
         return numeroInscritos < evento.getAforoMaximo();
-    
+    }
     
     //4d
     public Evento guardar(Evento evento) {

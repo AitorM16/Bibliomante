@@ -8,21 +8,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
 import proyecto.controller.dto.EventoDisponibleResponse;
 import proyecto.controller.dto.InscripcionEventoRequest;
-import org.springframework.web.bind.annotation.PutMapping;
-
-import org.springframework.web.bind.annotation.RequestBody;
 import proyecto.entity.Evento;
 import proyecto.services.EventoService;
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/eventos")
@@ -57,6 +54,7 @@ public class EventoController {
             @PathVariable int usuarioId) {
         eventoService.cancelarInscripcion(eventoId, usuarioId);
         return ResponseEntity.noContent().build();
+    }
     
     //4d
  // Crear un evento
