@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.Valid;
 import proyecto.controller.dto.PrestamoResponse;
 import proyecto.controller.dto.SolicitarPrestamoRequest;
+import org.springframework.web.bind.annotation.PutMapping;
+
+
+import proyecto.entity.Prestamo;
 import proyecto.services.PrestamoService;
 
 @RestController
@@ -34,4 +38,85 @@ public class PrestamoController {
     public ResponseEntity<List<PrestamoResponse>> consultarPrestamos(@PathVariable int usuarioId) {
         return ResponseEntity.ok(prestamoService.findByUsuario(usuarioId));
     }
+    
+ //4b Listar préstamos
+    @GetMapping
+    public ResponseEntity<List<Prestamo>> listarPrestamos() {
+        List<Prestamo> prestamos = prestamoService.findAll();
+        return new ResponseEntity<>(prestamos, HttpStatus.OK);
+
+    }
+ // Aprobar solicitud y pasarla a ACTIVO
+    @PutMapping("/{id}/aprobar")
+    public ResponseEntity<Void> aprobarPrestamo(@PathVariable int id) {
+        boolean aprobado = prestamoService.aprobar(id);
+
+        if (!aprobado) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    
+    //4b
+    @PutMapping("/{id}/devolver")
+    public ResponseEntity<Void> marcarComoDevuelto(@PathVariable int id) {
+        boolean actualizado = prestamoService.marcarComoDevuelto(id);
+
+        if (!actualizado) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    @PutMapping("/actualizar-vencidos")
+    public ResponseEntity<String> actualizarVencidos() {
+        int cantidad = prestamoService.actualizarVencidos();
+
+        return new ResponseEntity<>(
+                "Préstamos actualizados a VENCIDO: " + cantidad,
+                HttpStatus.OK
+        );
+    }
+    
+    //4c
+ // Historial de préstamos de un usuario
+    @GetMapping("/usuario/{usuarioId}")
+    public ResponseEntity<List<Prestamo>> historialPorUsuario(
+            @PathVariable int usuarioId) {
+        List<Prestamo> historial = prestamoService.historialPorUsuario(usuarioId);
+        return new ResponseEntity<>(historial, HttpStatus.OK);
+    }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

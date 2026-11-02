@@ -3,6 +3,7 @@ package proyecto.services;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -91,5 +92,38 @@ public class EventoService {
     private boolean tieneAforo(Evento evento) {
         int numeroInscritos = evento.getUsuariosInscritos() == null ? 0 : evento.getUsuariosInscritos().size();
         return numeroInscritos < evento.getAforoMaximo();
+    
+    
+    //4d
+    public Evento guardar(Evento evento) {
+        return eventoRepository.save(evento);
+    }
+    public boolean modificar(int id, Evento datosEvento) {
+        Optional<Evento> eventoOpt = eventoRepository.findById(id);
+
+        if (eventoOpt.isEmpty() ||
+                eventoRepository.existsByIdAndUsuariosInscritosIsNotEmpty(id)) {
+            return false;
+        }
+
+        datosEvento.setId(id);
+        eventoRepository.save(datosEvento);
+        return true;
+    }
+    
+    public Optional<Evento> findById(int id) {
+        return eventoRepository.findById(id);
+    }
+    
+    public boolean eliminar(int id) {
+        Optional<Evento> eventoOpt = eventoRepository.findById(id);
+
+        if (eventoOpt.isEmpty() ||
+                eventoRepository.existsByIdAndUsuariosInscritosIsNotEmpty(id)) {
+            return false;
+        }
+
+        eventoRepository.delete(eventoOpt.get());
+        return true;
     }
 }
