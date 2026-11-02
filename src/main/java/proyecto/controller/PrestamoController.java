@@ -60,4 +60,45 @@ public class PrestamoController {
                 HttpStatus.OK
         );
     }
+    
+    //4c
+ // Historial de préstamos de un usuario
+    @GetMapping("/usuario/{usuarioId}")
+    public ResponseEntity<List<Prestamo>> historialPorUsuario(
+            @PathVariable int usuarioId) {
+        List<Prestamo> historial = prestamoService.historialPorUsuario(usuarioId);
+        return new ResponseEntity<>(historial, HttpStatus.OK);
+    }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

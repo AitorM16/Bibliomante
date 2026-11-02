@@ -25,4 +25,6 @@ public interface PrestamoRepository extends JpaRepository<Prestamo, Integer> {
 	        Estado estado,
 	        LocalDate fecha
 	);
+	//4c
+	List<Prestamo> findByUsuario_Id(int usuarioId);
 }

@@ -70,4 +70,11 @@ public class PrestamoService {
         return vencidos.size();
     }
     
+    //4c
+    public List<Prestamo> historialPorUsuario(int usuarioId) {
+        return prestamoRepository.findByUsuario_Id(usuarioId);
+    }
+    
+    
+    
 }

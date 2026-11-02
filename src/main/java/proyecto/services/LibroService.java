@@ -77,10 +77,7 @@ public class LibroService {
 	    return nuevosEjemplares >= prestamosPendientes;
 	}
 
-	public boolean ejemplaresValidos(int id, Integer ejemplaresDisponibles) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
 
 	
 }
