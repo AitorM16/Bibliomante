@@ -9,9 +9,14 @@ import org.springframework.stereotype.Repository;
 import proyecto.entity.Estado;
 import proyecto.entity.Libro;
 import proyecto.entity.Prestamo;
+import proyecto.entity.Estado;
 
 @Repository
 public interface PrestamoRepository extends JpaRepository<Prestamo, Integer> {
+
+    java.util.List<Prestamo> findByUsuario_Id(Integer usuarioId);
+
+    long countByUsuario_IdAndEstadoPrestamo(Integer usuarioId, Estado estadoPrestamo);
 	
 	//4a
 	boolean existsByLibroAndEstadoPrestamoIn(Libro libro, List<Estado> estados);

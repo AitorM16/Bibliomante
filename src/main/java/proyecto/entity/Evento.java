@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,7 +27,7 @@ public class Evento extends DomainEntity {
 	private Bibliotecario organizador;
 
 	@ManyToMany
-	private List<Usuario> usuariosInscritos;
+	private List<Usuario> usuariosInscritos = new ArrayList<>();
 
 	public Evento() {
 	}

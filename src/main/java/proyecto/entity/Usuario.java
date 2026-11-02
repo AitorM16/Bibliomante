@@ -1,16 +1,21 @@
 package proyecto.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Usuario extends Actor {
 
-	@OneToMany
-	private List<Prestamo> prestamos;
+	@OneToMany(mappedBy = "usuario")
+	@JsonIgnore
+	private List<Prestamo> prestamos = new ArrayList<>();
 
-	@ManyToMany
-	private List<Evento> eventosInscritos;
+	@ManyToMany(mappedBy = "usuariosInscritos")
+	@JsonIgnore
+	private List<Evento> eventosInscritos = new ArrayList<>();
 
 	public Usuario() {
 		super();
